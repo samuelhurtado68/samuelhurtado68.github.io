@@ -8,19 +8,19 @@
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
   :root{
-    --bg: #121316; 
-    --bg-alt: #18191D; 
-    --panel: #1C1D22; 
-    --panel-border: #2A2C33; 
-    --trace: #34363F; 
-    --text: #ECEDF0; 
-    --text-dim: #9FA1AC; 
-    --text-faint: #686B78; 
-    --copper: #A63446; 
-    --copper-bright: #D65D6E; 
-    --led: #F5909F; 
-    --led-dim:  #7A3540; 
-    --radius: 12px; 
+    --bg: #121316;
+    --bg-alt: #18191D;
+    --panel: #1C1D22;
+    --panel-border: #2A2C33;
+    --trace: #34363F;
+    --text: #ECEDF0;
+    --text-dim: #9FA1AC;
+    --text-faint: #686B78;
+    --copper: #A63446;
+    --copper-bright: #D65D6E;
+    --led: #F5909F;
+    --led-dim: #7A3540;
+    --radius: 12px;
     --maxw: 1080px;
   }
 
@@ -42,7 +42,6 @@
 
   .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
 
-  /* ---------- background circuit texture ---------- */
   .circuit-bg{
     position: fixed; inset: 0; z-index: -1;
     background-image:
@@ -52,7 +51,6 @@
     opacity: 0.06;
   }
 
-  /* ---------- nav ---------- */
   header{
     position: sticky; top:0; z-index: 50;
     background: rgba(18,19,22,0.92);
@@ -65,16 +63,21 @@
   }
   .logo{ font-weight:600; letter-spacing: 0.04em; font-size: 0.95rem; color: var(--text); }
   .logo span{ color: var(--copper-bright); }
-  .navlinks{ display:flex; gap: 28px; list-style:none; font-size: 0.85rem; letter-spacing: 0.02em; }
+  .navlinks{ display:flex; align-items:center; gap: 28px; list-style:none; font-size: 0.85rem; letter-spacing: 0.02em; }
   .navlinks a{ color: var(--text-dim); }
   .navlinks a:hover{ color: var(--led); }
-  .navtoggle{ display:none; background:none; border:1px solid var(--panel-border); color: var(--text); padding:6px 10px; border-radius: var(--radius); font-family:'IBM Plex Mono'; }
 
-  @media (max-width: 720px){
-    .navlinks{ display:none; }
+  .lang-toggle{
+    font-family:'IBM Plex Mono'; font-size: 0.75rem; background: none;
+    border: 1px solid var(--panel-border); color: var(--text-dim);
+    padding: 6px 12px; border-radius: 999px; cursor: pointer;
+    display:flex; align-items:center; gap: 6px; transition: border-color .15s, color .15s;
   }
+  .lang-toggle:hover{ border-color: var(--led); color: var(--led); }
+  .lang-toggle .cur{ color: var(--copper-bright); font-weight:600; }
 
-  /* ---------- hero ---------- */
+  @media (max-width: 720px){ .navlinks li:not(.lang-item){ display:none; } }
+
   .hero{ padding: 96px 0 64px; position: relative; }
   .eyebrow{
     color: var(--copper-bright); font-size: 0.8rem; letter-spacing: 0.06em;
@@ -97,12 +100,8 @@
   @media (prefers-reduced-motion: reduce){ h1.name .cursor{ animation:none; opacity:1; } }
   @keyframes blink{ 50%{ opacity:0; } }
 
-  .tagline{
-    margin-top: 22px; font-size: 1.25rem; color: var(--text); max-width: 620px; font-weight: 500;
-  }
-  .lede{
-    margin-top: 14px; font-size: 1rem; color: var(--text-dim); max-width: 560px;
-  }
+  .tagline{ margin-top: 22px; font-size: 1.25rem; color: var(--text); max-width: 620px; font-weight: 500; }
+  .lede{ margin-top: 14px; font-size: 1rem; color: var(--text-dim); max-width: 560px; }
 
   .status{
     margin-top: 28px; display:inline-flex; align-items:center; gap: 10px;
@@ -118,9 +117,9 @@
     display:inline-flex; align-items:center; gap:8px; color: var(--text);
     transition: border-color .15s, color .15s, background .15s;
   }
-  .btn:hover{ border-color: var(--led); color: var(--led); background: rgba(111,227,160,0.06); }
-  .btn.primary{ background: var(--copper); border-color: var(--copper); color: #0A1F17; font-weight:600; }
-  .btn.primary:hover{ background: var(--copper-bright); border-color: var(--copper-bright); color:#0A1F17; }
+  .btn:hover{ border-color: var(--led); color: var(--led); background: rgba(245,144,159,0.06); }
+  .btn.primary{ background: var(--copper); border-color: var(--copper); color: #F5EAEA; font-weight:600; }
+  .btn.primary:hover{ background: var(--copper-bright); border-color: var(--copper-bright); color:#1B0E11; }
 
   .contact-strip{
     margin-top: 30px; font-family:'IBM Plex Mono'; font-size: 0.82rem; color: var(--text-faint);
@@ -128,30 +127,22 @@
   }
   .contact-strip span:not(:last-child)::after{ content:'·'; margin-left:14px; color: var(--trace); }
 
-  /* ---------- waveform divider ---------- */
   .wave-divider{ padding: 34px 0; }
   .wave-divider .wrap{ display:flex; align-items:center; gap: 16px; }
   .wave-divider svg{ flex: 1; height: 22px; width: 100%; overflow: visible; }
   .wave-divider path{ stroke: var(--trace); stroke-width: 1.5; fill:none; }
   .wave-label{ font-family:'IBM Plex Mono'; font-size: 0.72rem; color: var(--text-faint); white-space: nowrap; }
 
-  /* ---------- sections ---------- */
   section{ padding: 70px 0; border-top: 1px solid var(--panel-border); }
   .sec-head{ margin-bottom: 40px; }
-  h2.sec-title{
-    font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 700; margin-top: 8px; color: var(--text);
-  }
+  h2.sec-title{ font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 700; margin-top: 8px; color: var(--text); }
 
-  /* ---------- about ---------- */
   .about-grid{ display:grid; grid-template-columns: 1.5fr 1fr; gap: 48px; align-items:start; }
   @media (max-width: 800px){ .about-grid{ grid-template-columns: 1fr; } }
   .about-grid p{ color: var(--text-dim); font-size: 1.02rem; margin-bottom: 16px; max-width: 60ch; }
   .about-grid p strong{ color: var(--text); font-weight:600; }
 
-  .spec-box{
-    background: var(--panel); border: 1px solid var(--panel-border); border-radius: var(--radius);
-    padding: 22px 24px;
-  }
+  .spec-box{ background: var(--panel); border: 1px solid var(--panel-border); border-radius: var(--radius); padding: 22px 24px; }
   .spec-box .spec-title{
     font-family:'IBM Plex Mono'; font-size:0.75rem; color: var(--copper-bright);
     letter-spacing:0.05em; margin-bottom: 16px; padding-bottom:12px; border-bottom:1px solid var(--panel-border);
@@ -161,7 +152,6 @@
   .spec-row .k{ color: var(--text-faint); font-family:'IBM Plex Mono'; font-size: 0.78rem; }
   .spec-row .v{ color: var(--text); text-align:right; }
 
-  /* ---------- projects ---------- */
   .proj-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 22px; }
   @media (max-width: 760px){ .proj-grid{ grid-template-columns: 1fr; } }
 
@@ -187,13 +177,10 @@
   }
   .card-link{ font-family:'IBM Plex Mono'; font-size: 0.82rem; margin-top: 4px; }
 
-  /* ---------- skills ---------- */
   .skill-groups{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   @media (max-width: 760px){ .skill-groups{ grid-template-columns: 1fr; } }
   .skill-group{ background: var(--panel); border:1px solid var(--panel-border); border-radius: var(--radius); padding: 20px; }
-  .skill-group h4{
-    font-family:'IBM Plex Mono'; font-size:0.75rem; color: var(--copper-bright); margin-bottom:14px; letter-spacing:0.04em;
-  }
+  .skill-group h4{ font-family:'IBM Plex Mono'; font-size:0.75rem; color: var(--copper-bright); margin-bottom:14px; letter-spacing:0.04em; }
   .pill-row{ display:flex; flex-wrap:wrap; gap:8px; }
   .pill{
     font-family:'IBM Plex Mono'; font-size:0.75rem; color: var(--text);
@@ -201,11 +188,8 @@
     padding: 5px 11px; border-radius: 999px;
   }
 
-  /* ---------- education timeline ---------- */
   .timeline{ position:relative; padding-left: 28px; }
-  .timeline::before{
-    content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background: var(--trace);
-  }
+  .timeline::before{ content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background: var(--trace); }
   .t-item{ position:relative; padding-bottom: 34px; }
   .t-item:last-child{ padding-bottom:0; }
   .t-item::before{
@@ -218,7 +202,6 @@
   .t-item .t-courses{ font-size: 0.85rem; color: var(--text-dim); margin-top:10px; }
   .t-item .t-courses b{ color: var(--text); font-family:'IBM Plex Mono'; font-weight:500; font-size:0.78rem; }
 
-  /* ---------- contact / footer ---------- */
   .contact-wrap{ text-align:left; }
   .contact-wrap p{ color: var(--text-dim); max-width: 56ch; margin-top: 14px; font-size: 1.02rem; }
   .big-links{ margin-top: 30px; display:flex; flex-wrap:wrap; gap: 14px; }
@@ -236,30 +219,34 @@
   <nav>
     <div class="logo mono">SAMUEL<span>.HURTADO</span></div>
     <ul class="navlinks mono">
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
+      <li><a href="#projects" data-en="Projects" data-fr="Projets">Projects</a></li>
+      <li><a href="#skills" data-en="Skills" data-fr="Compétences">Skills</a></li>
+      <li><a href="#education" data-en="Education" data-fr="Formation">Education</a></li>
+      <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
+      <li class="lang-item">
+        <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+          <span class="cur" id="langCur">EN</span> / <span id="langOther">FR</span>
+        </button>
+      </li>
     </ul>
   </nav>
 </header>
 
 <main>
 
-  <!-- HERO -->
   <section class="hero" style="border-top:none;">
     <div class="wrap">
       <div class="eyebrow mono">$ SH</div>
       <h1 class="name">Samuel Hurtado<span class="cursor">&nbsp;</span></h1>
-      <p class="tagline">Electronics &amp; microprocessor engineering student, Polytech Nantes.</p>
-      <p class="lede">I build things from the transistor up — from a RISC-V emulator to a light-tracking robot. Currently looking for a 4th-year internship abroad, summer 2027.</p>
+      <p class="tagline" data-en="Electronics &amp; microprocessor engineering student, Polytech Nantes." data-fr="Étudiant ingénieur en électronique et microprocesseurs, Polytech Nantes.">Electronics &amp; microprocessor engineering student, Polytech Nantes.</p>
+      <p class="lede" data-en="I build things from the transistor up — from a RISC-V emulator to a light-tracking robot. Currently looking for a 4th-year internship abroad, summer 2027." data-fr="Je construis mes projets à partir du transistor — d'un émulateur RISC-V à un robot suiveur de lumière. Je recherche un stage de 4e année à l'étranger, été 2027.">I build things from the transistor up — from a RISC-V emulator to a light-tracking robot. Currently looking for a 4th-year internship abroad, summer 2027.</p>
 
-      <div class="status"><span class="dot" aria-hidden="true"></span> Open to internships — Summer 2027, at least 13 weeks</div>
+      <div class="status"><span class="dot" aria-hidden="true"></span> <span data-en="Open to internships — Summer 2027, at least 13 weeks" data-fr="Ouvert aux stages — Été 2027, 13 semaines minimum">Open to internships — Summer 2027, at least 13 weeks</span></div>
 
       <div class="cta-row">
-        <a class="btn primary" href="https://github.com/samuelhurtado68" target="_blank" rel="noopener">View GitHub ↗</a>
-        <a class="btn" href="mailto:samuel.hurtadobriceno@gmail.com">Email me</a>
+        <a class="btn primary" href="https://github.com/samuelhurtado68" target="_blank" rel="noopener" data-en="View GitHub ↗" data-fr="Voir GitHub ↗">View GitHub ↗</a>
+        <a class="btn" href="mailto:samuel.hurtadobriceno@gmail.com" data-en="Email me" data-fr="M'écrire">Email me</a>
         <a class="btn" href="https://www.linkedin.com/in/samuelhur" target="_blank" rel="noopener">LinkedIn ↗</a>
       </div>
 
@@ -271,7 +258,6 @@
     </div>
   </section>
 
-  <!-- WAVE DIVIDER -->
   <div class="wave-divider" aria-hidden="true">
     <div class="wrap">
       <span class="wave-label">clk200 — 200 Hz</span>
@@ -281,32 +267,30 @@
     </div>
   </div>
 
-  <!-- ABOUT -->
   <section id="about">
     <div class="wrap">
       <div class="sec-head">
         <div class="eyebrow mono">// about</div>
-        <h2 class="sec-title">From a new language to a new architecture</h2>
+        <h2 class="sec-title" data-en="From a new language to a new architecture" data-fr="D'une nouvelle langue à une nouvelle architecture">From a new language to a new architecture</h2>
       </div>
       <div class="about-grid">
         <div>
-          <p>I moved to France in 2019 without speaking a word of French. Three years later I passed my <strong>Baccalauréat with honors</strong> — proof, if nothing else, that I don't mind being dropped into an unfamiliar system and figuring out how it works.</p>
-          <p>That's more or less how I approach electronics as well. I've always taken things apart to see what's inside, and that curiosity  led me to build a <strong>RISC-V CPU emulator</strong> in my spare time, as well as explore FPGAs and microcontrollers through my coursework.</p>
-          <p>At Polytech Nantes I'm studying electronics and embedded systems, and I'm now looking for a team abroad where I can continue learning—ideally in or near the field of microprocessor architecture.</p>
+          <p data-en="I moved to France in 2019 without speaking a word of French. Three years later I passed my &lt;strong&gt;Baccalauréat with honors&lt;/strong&gt; — proof, if nothing else, that I don't mind being dropped into an unfamiliar system and figuring out how it works." data-fr="Je suis arrivé en France en 2019 sans parler un mot de français. Trois ans plus tard, j'obtenais mon &lt;strong&gt;baccalauréat avec mention&lt;/strong&gt; — la preuve, au moins, que je n'ai pas peur d'être plongé dans un système inconnu et d'apprendre à le comprendre.">I moved to France in 2019 without speaking a word of French. Three years later I passed my <strong>Baccalauréat with honors</strong> — proof, if nothing else, that I don't mind being dropped into an unfamiliar system and figuring out how it works.</p>
+          <p data-en="That's more or less how I approach electronics as well. I've always taken things apart to see what's inside, and that curiosity led me to build a &lt;strong&gt;RISC-V CPU emulator&lt;/strong&gt; in my spare time, as well as explore FPGAs and microcontrollers through my coursework." data-fr="C'est un peu la même approche que j'ai avec l'électronique. J'ai toujours démonté les choses pour voir ce qu'il y a dedans, et cette curiosité m'a mené à construire un &lt;strong&gt;émulateur de microprocesseur RISC-V&lt;/strong&gt; sur mon temps libre, et à explorer des FPGA et microcontrôleurs dans mes cours.">That's more or less how I approach electronics as well. I've always taken things apart to see what's inside, and that curiosity led me to build a <strong>RISC-V CPU emulator</strong> in my spare time, as well as explore FPGAs and microcontrollers through my coursework.</p>
+          <p data-en="At Polytech Nantes I'm studying electronics and embedded systems, and I'm now looking for a team abroad where I can continue learning—ideally in or near the field of microprocessor architecture." data-fr="À Polytech Nantes, j'étudie l'électronique et les systèmes embarqués, et je recherche aujourd'hui une équipe à l'étranger pour continuer à apprendre — idéalement autour de l'architecture des microprocesseurs.">At Polytech Nantes I'm studying electronics and embedded systems, and I'm now looking for a team abroad where I can continue learning—ideally in or near the field of microprocessor architecture.</p>
         </div>
         <div class="spec-box">
           <div class="spec-title mono">// profile.</div>
           <div class="spec-row"><span class="k">origin</span><span class="v">Venezuela</span></div>
           <div class="spec-row"><span class="k">based_in</span><span class="v">Nantes, France</span></div>
-          <div class="spec-row"><span class="k">languages</span><span class="v">FR (native-level) · ES (native) · EN</span></div>
-          <div class="spec-row"><span class="k">currently</span><span class="v">Polytech Nantes, year 4 of 5</span></div>
-          <div class="spec-row"><span class="k">seeking</span><span class="v">Internship abroad, summer 2027</span></div>
+          <div class="spec-row"><span class="k">languages</span><span class="v" data-en="FR (native-level) · ES (native) · EN" data-fr="FR (niveau natif) · ES (natif) · EN">FR (native-level) · ES (native) · EN</span></div>
+          <div class="spec-row"><span class="k">currently</span><span class="v" data-en="Polytech Nantes, year 4 of 5" data-fr="Polytech Nantes, 4e année sur 5">Polytech Nantes, year 4 of 5</span></div>
+          <div class="spec-row"><span class="k">seeking</span><span class="v" data-en="Internship abroad, summer 2027" data-fr="Stage à l'étranger, été 2027">Internship abroad, summer 2027</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WAVE DIVIDER -->
   <div class="wave-divider" aria-hidden="true">
     <div class="wrap">
       <span class="wave-label">clk20_en — 20 Hz</span>
@@ -316,27 +300,26 @@
     </div>
   </div>
 
-  <!-- PROJECTS -->
   <section id="projects">
     <div class="wrap">
       <div class="sec-head">
         <div class="eyebrow mono">// projects</div>
-        <h2 class="sec-title">Selected projects</h2>
+        <h2 class="sec-title" data-en="Selected projects" data-fr="Projets sélectionnés">Selected projects</h2>
       </div>
       <div class="proj-grid">
 
         <article class="card">
           <div class="card-top">
             <span class="designator">P1</span>
-            <span class="card-period">Ongoing · Personal</span>
+            <span class="card-period" data-en="Ongoing · Personal" data-fr="En cours · Personnel">Ongoing · Personal</span>
           </div>
-          <span class="chip-status">In progress</span>
-          <h3>RISC-V CPU Emulator</h3>
-          <p>Emulating the RISC-V RV32I instruction set from scratch in C: fetch–decode–execute cycle, register file, memory access, and low-level bitwise instruction decoding.</p>
+          <span class="chip-status" data-en="In progress" data-fr="En cours">In progress</span>
+          <h3 data-en="RISC-V CPU Emulator" data-fr="Émulateur CPU RISC-V">RISC-V CPU Emulator</h3>
+          <p data-en="Emulating the RISC-V RV32I instruction set from scratch in C: fetch–decode–execute cycle, register file, memory access, and low-level bitwise instruction decoding." data-fr="Émulation du jeu d'instructions RISC-V RV32I en C, réalisée de zéro : cycle fetch-decode-execute, banc de registres, accès mémoire, et décodage bas niveau des instructions.">Emulating the RISC-V RV32I instruction set from scratch in C: fetch–decode–execute cycle, register file, memory access, and low-level bitwise instruction decoding.</p>
           <div class="tag-row">
-            <span class="tag">C</span><span class="tag">RISC-V</span><span class="tag">Computer Architecture</span>
+            <span class="tag">C</span><span class="tag">RISC-V</span><span class="tag" data-en="Computer Architecture" data-fr="Architecture des ordinateurs">Computer Architecture</span>
           </div>
-          <a class="card-link" href="https://github.com/samuelhurtado68" target="_blank" rel="noopener">View on GitHub ↗</a>
+          <a class="card-link" href="https://github.com/samuelhurtado68" target="_blank" rel="noopener" data-en="View on GitHub ↗" data-fr="Voir sur GitHub ↗">View on GitHub ↗</a>
         </article>
 
         <article class="card">
@@ -344,13 +327,13 @@
             <span class="designator">P2</span>
             <span class="card-period">2025 · Polytech Nantes</span>
           </div>
-          <span class="chip-status">Solo project</span>
-          <h3>Digicode — Electronic Lock on FPGA</h3>
-          <p>A synchronous 3-digit combination lock on a Xilinx Artix-7 FPGA: Moore and Mealy finite-state machines, pushbutton debouncing, auto-repeat, and multi-frequency clocking. Validated on a Basys 3 board.</p>
+          <span class="chip-status" data-en="Solo project" data-fr="Projet solo">Solo project</span>
+          <h3 data-en="Digicode — Electronic Lock on FPGA" data-fr="Digicode — Cadenas électronique sur FPGA">Digicode — Electronic Lock on FPGA</h3>
+          <p data-en="A synchronous 3-digit combination lock on a Xilinx Artix-7 FPGA: Moore and Mealy finite-state machines, pushbutton debouncing, auto-repeat, and multi-frequency clocking. Validated on a Basys 3 board." data-fr="Un cadenas électronique à 3 chiffres entièrement synchrone sur FPGA Xilinx Artix-7 : automates de Moore et Mealy, filtrage anti-rebond, auto-repeat et cadencement multi-fréquences. Validé sur carte Basys 3.">A synchronous 3-digit combination lock on a Xilinx Artix-7 FPGA: Moore and Mealy finite-state machines, pushbutton debouncing, auto-repeat, and multi-frequency clocking. Validated on a Basys 3 board.</p>
           <div class="tag-row">
-            <span class="tag">VHDL</span><span class="tag">FPGA</span><span class="tag">Vivado</span><span class="tag">FSM design</span>
+            <span class="tag">VHDL</span><span class="tag">FPGA</span><span class="tag">Vivado</span><span class="tag" data-en="FSM design" data-fr="Conception de FSM">FSM design</span>
           </div>
-          <a class="card-link" href="digicode.jpg" target="_blank" rel="noopener">See the architecture ↗</a>
+          <a class="card-link" href="digicode.jpg" target="_blank" rel="noopener" data-en="See the architecture ↗" data-fr="Voir l'architecture ↗">See the architecture ↗</a>
         </article>
 
         <article class="card">
@@ -358,35 +341,34 @@
             <span class="designator">P3</span>
             <span class="card-period">2025–2026 · Polytech Nantes</span>
           </div>
-          <span class="chip-status">Team of 5</span>
-          <h3>PolyFlash — Autonomous Robot</h3>
-          <p>A maze-solving robot built with a team of five. I designed the light-detection subsystem: an LDR voltage-divider circuit, its calibration, and a 3D-printed shielding wall sized by trigonometric calculation.</p>
+          <span class="chip-status" data-en="Team of 5" data-fr="Équipe de 5">Team of 5</span>
+          <h3 data-en="PolyFlash — Autonomous Robot" data-fr="PolyFlash — Robot autonome">PolyFlash — Autonomous Robot</h3>
+          <p data-en="A maze-solving robot built with a team of five. I designed the light-detection subsystem: an LDR voltage-divider circuit, its calibration, and a 3D-printed shielding wall sized by trigonometric calculation." data-fr="Un robot résolveur de labyrinthe conçu en équipe de cinq. J'ai réalisé le sous-système de détection lumineuse : circuit à pont diviseur (LDR), étalonnage, et paroi séparatrice imprimée en 3D dimensionnée par calcul trigonométrique.">A maze-solving robot built with a team of five. I designed the light-detection subsystem: an LDR voltage-divider circuit, its calibration, and a 3D-printed shielding wall sized by trigonometric calculation.</p>
           <div class="tag-row">
-            <span class="tag">Arduino</span><span class="tag">Sensor design</span><span class="tag">3D printing</span>
+            <span class="tag">Arduino</span><span class="tag" data-en="Sensor design" data-fr="Conception de capteurs">Sensor design</span><span class="tag" data-en="3D printing" data-fr="Impression 3D">3D printing</span>
           </div>
-          <a class="card-link" href="PolyFlash_report.pdf" target="_blank" rel="noopener">Read the full report (PDF) ↗</a>
-          <a class="card-link" href="PolyFlash_slides.pdf" target="_blank" rel="noopener">View slides (PDF) ↗</a>
+          <a class="card-link" href="PolyFlash_report.pdf" target="_blank" rel="noopener" data-en="Read the full report (PDF) ↗" data-fr="Lire le rapport complet (PDF) ↗">Read the full report (PDF) ↗</a><br>
+          <a class="card-link" href="PolyFlash_slides.pdf" target="_blank" rel="noopener" data-en="View slides (PDF) ↗" data-fr="Voir les diapositives (PDF) ↗">View slides (PDF) ↗</a>
         </article>
 
         <article class="card">
           <div class="card-top">
             <span class="designator">P4</span>
-            <span class="card-period">2024–2025 · TIPE Project</span>
+            <span class="card-period" data-en="2024–2025 · TIPE Project" data-fr="2024–2025 · Projet TIPE">2024–2025 · TIPE Project</span>
           </div>
-          <span class="chip-status">Solo project</span>
-          <h3>Solar Tracker</h3>
-          <p>A dual-photoresistor solar tracker: electronic build with an Arduino Uno and DC motors, plus real-time tracking logic and signal filtering.</p>
+          <span class="chip-status" data-en="Solo project" data-fr="Projet solo">Solo project</span>
+          <h3 data-en="Solar Tracker" data-fr="Suiveur solaire">Solar Tracker</h3>
+          <p data-en="A dual-photoresistor solar tracker: electronic build with an Arduino Uno and DC motors, plus real-time tracking logic and signal filtering." data-fr="Un suiveur solaire à double photorésistance : montage électronique avec Arduino Uno et moteurs CC, logique de suivi en temps réel et filtrage des signaux.">A dual-photoresistor solar tracker: electronic build with an Arduino Uno and DC motors, plus real-time tracking logic and signal filtering.</p>
           <div class="tag-row">
-            <span class="tag">Arduino</span><span class="tag">Sensors</span><span class="tag">Control</span>
+            <span class="tag">Arduino</span><span class="tag" data-en="Sensors" data-fr="Capteurs">Sensors</span><span class="tag" data-en="Control" data-fr="Asservissement">Control</span>
           </div>
-          <a class="card-link" href="SolarTracker_slides.pdf" target="_blank" rel="noopener">View slides (PDF) ↗</a>
+          <a class="card-link" href="SolarTracker_slides.pdf" target="_blank" rel="noopener" data-en="View slides (PDF) ↗" data-fr="Voir les diapositives (PDF) ↗">View slides (PDF) ↗</a>
         </article>
 
       </div>
     </div>
   </section>
 
-  <!-- WAVE DIVIDER -->
   <div class="wave-divider" aria-hidden="true">
     <div class="wrap">
       <span class="wave-label">clk4_en — 4 Hz</span>
@@ -396,16 +378,15 @@
     </div>
   </div>
 
-  <!-- SKILLS -->
   <section id="skills">
     <div class="wrap">
       <div class="sec-head">
         <div class="eyebrow mono">// skills</div>
-        <h2 class="sec-title">Toolbox</h2>
+        <h2 class="sec-title" data-en="Toolbox" data-fr="Boîte à outils">Toolbox</h2>
       </div>
       <div class="skill-groups">
         <div class="skill-group">
-          <h4>Languages &amp; tools</h4>
+          <h4 data-en="Languages &amp; tools" data-fr="Langages &amp; outils">Languages &amp; tools</h4>
           <div class="pill-row">
             <span class="pill">C</span><span class="pill">Python</span><span class="pill">VHDL</span>
             <span class="pill">Vivado</span><span class="pill">Arduino</span><span class="pill">SolidWorks</span>
@@ -413,57 +394,59 @@
           </div>
         </div>
         <div class="skill-group">
-          <h4>Digital electronics</h4>
+          <h4 data-en="Digital electronics" data-fr="Électronique numérique">Digital electronics</h4>
           <div class="pill-row">
-            <span class="pill">Moore / Mealy FSMs</span><span class="pill">Debounce filtering</span>
-            <span class="pill">Multiplexing</span><span class="pill">Sensor circuits</span>
+            <span class="pill">Moore / Mealy FSMs</span>
+            <span class="pill" data-en="Debounce filtering" data-fr="Filtrage anti-rebond">Debounce filtering</span>
+            <span class="pill" data-en="Multiplexing" data-fr="Multiplexage">Multiplexing</span>
+            <span class="pill" data-en="Sensor circuits" data-fr="Circuits capteurs">Sensor circuits</span>
           </div>
         </div>
         <div class="skill-group">
-          <h4>Currently studying</h4>
+          <h4 data-en="Currently studying" data-fr="Actuellement étudié">Currently studying</h4>
           <div class="pill-row">
-            <span class="pill">Microprocessor systems</span><span class="pill">Real-time embedded systems</span>
-            <span class="pill">SOpC / FPGA</span><span class="pill">Microelectronics</span>
+            <span class="pill" data-en="Microprocessor systems" data-fr="Systèmes à microprocesseurs">Microprocessor systems</span>
+            <span class="pill" data-en="Real-time embedded systems" data-fr="Systèmes embarqués temps réel">Real-time embedded systems</span>
+            <span class="pill">SOpC / FPGA</span>
+            <span class="pill" data-en="Microelectronics" data-fr="Microélectronique">Microelectronics</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- EDUCATION -->
   <section id="education">
     <div class="wrap">
       <div class="sec-head">
         <div class="eyebrow mono">// education</div>
-        <h2 class="sec-title">Timeline</h2>
+        <h2 class="sec-title" data-en="Timeline" data-fr="Parcours">Timeline</h2>
       </div>
       <div class="timeline">
         <div class="t-item">
           <div class="t-period mono">2025 — 2028</div>
-          <h4>Engineering Degree, Electronics &amp; Digital Technologies</h4>
+          <h4 data-en="Engineering Degree, Electronics &amp; Digital Technologies" data-fr="Diplôme d'ingénieur, Électronique et Technologies numériques">Engineering Degree, Electronics &amp; Digital Technologies</h4>
           <div class="t-sub">Polytech Nantes</div>
-          <div class="t-courses"><b>Key courses :</b> Microprocessor Systems, Digital Circuit Design, Microelectronics, Real-Time Embedded Systems, SOpC / FPGA.</div>
+          <div class="t-courses"><b data-en="Key courses:" data-fr="Cours clés :">Key courses:</b> <span data-en="Microprocessor Systems, Digital Circuit Design, Microelectronics, Real-Time Embedded Systems, SOpC / FPGA." data-fr="Systèmes à microprocesseurs, Conception de circuits numériques, Microélectronique, Systèmes embarqués temps réel, SOpC / FPGA.">Microprocessor Systems, Digital Circuit Design, Microelectronics, Real-Time Embedded Systems, SOpC / FPGA.</span></div>
         </div>
         <div class="t-item">
           <div class="t-period mono">2023 — 2025</div>
-          <h4>Two-year intensive preparatory program for admission to French Grandes Écoles in Physics, Technology and Engineering Sciences </h4>
+          <h4 data-en="Two-year intensive preparatory program for admission to French Grandes Écoles in Physics, Technology and Engineering Sciences" data-fr="Classes préparatoires intensives aux grandes écoles françaises, filière Physique, Technologie et Sciences de l'Ingénieur (PTSI/PT)">Two-year intensive preparatory program for admission to French Grandes Écoles in Physics, Technology and Engineering Sciences</h4>
           <div class="t-sub">Lycée Livet, Nantes</div>
         </div>
         <div class="t-item">
           <div class="t-period mono">2020 — 2023</div>
-          <h4>French Baccalauréat, with Honors (Mathematics, Physics & Chemistry)</h4>
+          <h4 data-en="French Baccalauréat, with Honors (Mathematics, Physics &amp; Chemistry)" data-fr="Baccalauréat général, mention Bien (Mathématiques, Physique-Chimie)">French Baccalauréat, with Honors (Mathematics, Physics &amp; Chemistry)</h4>
           <div class="t-sub">Lycée Clemenceau, Nantes</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="wrap contact-wrap">
       <div class="eyebrow mono">// contact</div>
-      <h2 class="sec-title">Let's talk</h2>
-      <p>Looking for a 4th-year internship abroad, 13 weeks minimum, summer 2027 — ideally something touching microprocessor architecture. Reach out, I reply fast.</p>
+      <h2 class="sec-title" data-en="Let's talk" data-fr="Discutons">Let's talk</h2>
+      <p data-en="Looking for a 4th-year internship abroad, 13 weeks minimum, summer 2027 — ideally something touching microprocessor architecture. Reach out, I reply fast." data-fr="Je recherche un stage de 4e année à l'étranger, 13 semaines minimum, été 2027 — idéalement autour de l'architecture des microprocesseurs. Écris-moi, je réponds vite.">Looking for a 4th-year internship abroad, 13 weeks minimum, summer 2027 — ideally something touching microprocessor architecture. Reach out, I reply fast.</p>
       <div class="big-links">
         <a class="btn primary" href="mailto:samuel.hurtadobriceno@gmail.com">samuel.hurtadobriceno@gmail.com</a>
         <a class="btn" href="https://www.linkedin.com/in/samuelhur" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -477,9 +460,33 @@
 <footer>
   <div class="wrap">
     <p>Nantes, France</p>
-    <p>Built by Samuel Hurtado</p>
+    <p data-en="Built by Samuel Hurtado" data-fr="Créé par Samuel Hurtado">Built by Samuel Hurtado</p>
   </div>
 </footer>
+
+<script>
+  (function(){
+    var toggle = document.getElementById('langToggle');
+    var cur = document.getElementById('langCur');
+    var other = document.getElementById('langOther');
+    var lang = 'en';
+
+    function applyLang(l){
+      document.documentElement.lang = l;
+      document.querySelectorAll('[data-en]').forEach(function(el){
+        var val = el.getAttribute('data-' + l);
+        if(val !== null) el.innerHTML = val;
+      });
+      cur.textContent = l.toUpperCase();
+      other.textContent = (l === 'en') ? 'FR' : 'EN';
+    }
+
+    toggle.addEventListener('click', function(){
+      lang = (lang === 'en') ? 'fr' : 'en';
+      applyLang(lang);
+    });
+  })();
+</script>
 
 </body>
 </html>
